@@ -1,17 +1,30 @@
-import React from "react";
+import React from 'react';
 
-const InputField = ({lable,type="text",value,onChange,placeholder}) => {
-    return (
-        <div className="mb-4">
-            {label && <label className="block mb-1 font-medium">{label}</label>}
-            <input
-                type={type}
-                value={value}
-                onChange={onChange}
-                placeholder={placeholder}
-                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"
-            />
-        </div>
-    )
-}
+const InputField = ({ label, name, type, value, onChange, placeholder, className, children }) => {
+  return (
+    <div>
+      <label className="block text-sm font-medium">{label}</label>
+      {type === 'select' ? (
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className={className}
+        >
+          {children}
+        </select>
+      ) : (
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          className={className}
+        />
+      )}
+    </div>
+  );
+};
+
 export default InputField;
