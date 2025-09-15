@@ -1,16 +1,33 @@
 import React, { useState } from "react";
 import InputField from "../../../shared/components/InputField";
 import Button from "../../../shared/components/Button";
+import * as authService from "../service/authService";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  const onSubmit = (e) => {
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log({ email, password });
+        setError("");
+
+    try {
+      const user = await authService.login({ email, password });
+      console.log("Logged in user:", user);
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || "Login failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

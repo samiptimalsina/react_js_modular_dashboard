@@ -4,6 +4,7 @@ import authRoutes from "../modules/auth/routes";
 import dashboardRoutes from "../modules/dashboard/components/routes";
 import landingRoutes from "../modules/landing/routes"
 
+
 const renderRoutes = (routes) =>
   routes.map((route, index) => {
     if (route.index) {

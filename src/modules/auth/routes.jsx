@@ -1,17 +1,21 @@
 
-import Login from './components/Login';
-import Register from './components/Register';
+import { lazy } from "react";
+
+
+const Login = lazy(() => import("./components/Login"));
+const Register = lazy(() => import("./components/Register"));
+
 
 const authRoutes = [
+  
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
   },
   {
-    path: '/register',
+    path: "/register",
     element: <Register />,
   },
 ];
-
 
 export default authRoutes;
