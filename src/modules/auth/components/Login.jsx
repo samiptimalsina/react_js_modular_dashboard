@@ -8,7 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
 
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Login() {
 
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error(err.response?.data || err.message);
       setError(err.response?.data?.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
@@ -56,6 +56,12 @@ export default function Login() {
             placeholder="Password"
             className="w-full p-2 rounded bg-gray-700 text-white border-none focus:outline-none"
           />
+
+    
+        {error && (
+          <p className="text-red-500 bg-white-100 text-xs">{error}</p>
+        )}
+
 
           <div className="flex justify-end">
             <a href="/auth/forgot-password" className="text-sm text-pink-400 hover:underline">
