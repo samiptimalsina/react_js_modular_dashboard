@@ -26,3 +26,9 @@ export const login = async (userData) => {
 export const logout = () => {
   sessionStorage.removeItem("user");
 };
+
+
+export const authHeader = () => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  return user?.token ? { Authorization: `Bearer ${user.token}` } : {};
+};

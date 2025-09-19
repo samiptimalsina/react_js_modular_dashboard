@@ -21,6 +21,7 @@ const dashboardRoutes = [
             path: "reports",
             element: <Reports />,
           },
+
         ]
 
       },

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import authRoutes from "../modules/auth/routes";
 import dashboardRoutes from "../modules/dashboard/components/routes";
 import landingRoutes from "../modules/landing/routes"
+import userRoutes from "../modules/users/routes";
 
 
 const renderRoutes = (routes) =>
@@ -23,6 +24,7 @@ const AppRouter = () => {
     ...landingRoutes,
     ...authRoutes,
     ...dashboardRoutes,
+     ...userRoutes,
   ];
 
   return (
