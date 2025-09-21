@@ -69,7 +69,7 @@ const handleDelete = async (id) => {
         <button   onClick={() => navigate("/dashboard/users/create")}className="bg-green-600 text-white px-3 py-1 rounded">+ New User</button>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="gap-4">
         <div className="md:col-span-2 space-y-4">
           <SearchBar value={search} onChange={setSearch} status={query.status} onStatusChange={(s) => loadUsers({ status: s, page: 1 })} />
           <UserTable users={users} onEdit={(u) => setEditingUser(u)} onDelete={handleDelete} onView={handleView} />

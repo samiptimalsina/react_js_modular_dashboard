@@ -15,7 +15,7 @@ const users = [
                 children: [
                     { index: true, element: <UsersPage /> },       // /dashboard/users
                     { path: "create", element: <UserCreatePage /> }, // /dashboard/users/create
-                    { path: ":id/edit", element: <UserEditPage /> }, // /dashboard/users/:id/edit
+                    { path: ":id/edit", element: <UserEditPage /> } // /dashboard/users/:id/edit
                 ],
             },
         ],

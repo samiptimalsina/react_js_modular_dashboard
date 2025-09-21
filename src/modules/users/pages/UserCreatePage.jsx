@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../../shared/components/InputField";
 import Button from "../../../shared/components/Button";
-// import { createUser } from "../services/userService";
+import { createUser } from "../service/userService";
+
 
 const UserCreatePage = () => {
   const [formData, setFormData] = useState({ name: "", email: "" });
@@ -19,7 +20,9 @@ const UserCreatePage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log("User created:", formData);
+      await createUser(formData);
+      // console.log("User created:", formData);
+
       navigate("/dashboard/users"); 
     } catch (error) {
       console.error("Error creating user:", error);
@@ -29,7 +32,7 @@ const UserCreatePage = () => {
   };
 
   return (
-    <div className="container mt-5" >
+    <div className="container-fluid mt-5"   >
       <h2 className="mb-4 fw-bold">Create User</h2>
       <form onSubmit={handleSubmit}>
         <InputField
