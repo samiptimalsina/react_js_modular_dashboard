@@ -8,12 +8,23 @@ import Button from "../../../shared/components/Button";
 const UserEditPage = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({ name: "", email: "" });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getUserById(id);
-      setFormData({ name: user.name, email: user.email });
+      try {
+        const user = await getUserById(id);
+        console.log("Fetched user:", user); 
+        setFormData({ name: user.name, email: user.email });
+      } catch (err) {
+        console.error("Error fetching user:", err);
+        setError("Failed to load user data.");
+      } finally {
+        setLoading(false);
+      }
     };
     fetchUser();
   }, [id]);
@@ -23,37 +34,54 @@ const UserEditPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateUser(id, formData);
-    navigate("/users");
+    setSaving(true);
+    setError("");
+    try {
+      await updateUser(id, formData);
+      navigate("/dashboard/users");
+    } catch (err) {
+      console.error("Error updating user:", err);
+      setError("Failed to update user. Please try again.");
+    } finally {
+      setSaving(false);
+    }
   };
 
+  if (loading) return <p className="text-center mt-5">Loading user...</p>;
+
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h2 className="text-xl font-bold mb-4">Edit User</h2>
-      <form onSubmit={handleSubmit} className="space-y-3">
+    <div className="container-fluid mt-5">
+      <h2 className="mb-4 fw-bold">Edit User</h2>
+      {error && <div className="alert alert-danger">{error}</div>}
+      <form onSubmit={handleSubmit}>
         <InputField
-          type="text"
+          label="Name"
           name="name"
-          placeholder="Name"
+          type="text"
           value={formData.name}
           onChange={handleChange}
-          className="border p-2 w-full"
+          placeholder="Enter name"
+          className="form-control mb-3"
           required
         />
+
         <InputField
-          type="email"
+          label="User Email"
           name="email"
-          placeholder="Email"
+          type="email"
           value={formData.email}
           onChange={handleChange}
-          className="border p-2 w-full"
+          placeholder="Enter user email"
+          className="form-control mb-3"
           required
         />
+
         <Button
           type="submit"
+          disabled={saving}
           className="btn btn-success w-100"
         >
-          Update
+          {saving ? "Updating..." : "Update"}
         </Button>
       </form>
     </div>

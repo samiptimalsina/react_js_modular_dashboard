@@ -47,6 +47,7 @@ const UserTable = ({ users = [], onDelete }) => {
                   >
                     Edit
                   </button>
+
                   <button
                     onClick={() => onDelete(u.id)}
                     className="btn btn-danger btn-sm"

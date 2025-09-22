@@ -7,19 +7,20 @@ import UserEditPage from "./pages/UserEditPage";
 const users = [
     {
         path: "/dashboard",
-        element: <ProtectedRoute />, // protect all dashboard routes
+        element: <ProtectedRoute />,
         children: [
             {
-                path: "users", // /dashboard/users
-                element: <DashboardLayout />, // wrap inside dashboard
+                path: "users",
+                element: <DashboardLayout />,
                 children: [
-                    { index: true, element: <UsersPage /> },       // /dashboard/users
-                    { path: "create", element: <UserCreatePage /> }, // /dashboard/users/create
-                    { path: ":id/edit", element: <UserEditPage /> } // /dashboard/users/:id/edit
+                    { index: true, element: <UsersPage /> },
+                    { path: "create", element: <UserCreatePage /> },
+                    { path: "edit/:id", element: <UserEditPage /> }, 
                 ],
             },
         ],
     },
+
 ];
 
 export default users;
