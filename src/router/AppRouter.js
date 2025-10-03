@@ -4,6 +4,7 @@ import authRoutes from "../modules/auth/routes";
 import dashboardRoutes from "../modules/dashboard/components/routes";
 import landingRoutes from "../modules/landing/routes"
 import userRoutes from "../modules/users/routes";
+import roleRoutes from "../modules/roles/routes";
 
 
 const renderRoutes = (routes) =>
@@ -25,6 +26,7 @@ const AppRouter = () => {
     ...authRoutes,
     ...dashboardRoutes,
      ...userRoutes,
+     ...roleRoutes
   ];
 
   return (
