@@ -15,7 +15,7 @@ export default function DashboardLayout() {
         <Topbar />
 
         {/* Nested routes will render here */}
-        <main className="p-6 overflow-auto">
+        <main className=" overflow-auto">
           <Outlet />
         </main>
       </div>

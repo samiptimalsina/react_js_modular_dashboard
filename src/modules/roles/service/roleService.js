@@ -24,3 +24,10 @@ export const deleteRole = async (id) => {
   const response = await apiClient.delete(`/roles/${id}`);
   return response.data;
 };
+
+
+// GET a single role by ID
+export const getRoleById = async (id) => {
+  const response = await apiClient.get(`/roles/${id}`);
+  return response.data;
+};
