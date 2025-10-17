@@ -18,7 +18,7 @@ const useRolesStore = create((set, get) => ({
     try {
       const data = await getRoles(query);
       set({
-        roles: data,
+        roles: data.roles,
         meta: data.meta,
       });
     } catch (error) {

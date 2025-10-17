@@ -25,13 +25,14 @@ const RolePage = () => {
         </button>
       </div>
       <RoleTable
+      loadRoles={loadRoles} 
         roles={roles}
         meta={meta}
         loading={loading}
         query={query}
         setQuery={setQuery}
         deleteRole={deleteRole}
-      />
+        onEdit={(id) => navigate(`/dashboard/roles/edit/${id}`)}      />
     </div>
   );
 };
